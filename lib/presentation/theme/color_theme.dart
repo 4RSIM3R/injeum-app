@@ -33,8 +33,8 @@ class ColorTheme {
     },
   );
 
-  static const Color primary = Color(0xFF1642A3);
-
+  static const Color primary = Color(0xFF7D3BBA);
+  static const Color secondary = Color(0xFF9F65DD);
   //text colors
   static const Color textDark = Color(0xFF222222);
   static const Color textLight = Color(0xFFCFCFCF);
