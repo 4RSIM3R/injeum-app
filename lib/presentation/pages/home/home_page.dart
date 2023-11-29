@@ -212,7 +212,14 @@ class MainMenu extends StatelessWidget {
             height: 84,
             padding: EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: ColorTheme.primary,
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xFF1E1D20),
+                  ColorTheme.primary,
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
               borderRadius: BorderRadius.circular(16),
             ),
             child: SvgPicture.asset(image),
