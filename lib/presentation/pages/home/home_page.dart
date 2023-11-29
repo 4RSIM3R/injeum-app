@@ -46,8 +46,9 @@ class _HomePageState extends State<HomePage> {
         onTap: _onItemTapped,
         currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
-        elevation: 10,
-        showUnselectedLabels: true,
+        elevation: 0,
+        showUnselectedLabels: false,
+        showSelectedLabels: false,
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.white,
         selectedIconTheme: const IconThemeData(
@@ -63,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                 AppAssets.icon_home,
               ),
             ),
-            label: 'Home',
+            label: 'Beranda',
           ),
           BottomNavigationBarItem(
             icon: ImageIcon(
@@ -79,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                 AppAssets.icon_account,
               ),
             ),
-            label: 'Account',
+            label: 'Akun Saya',
           ),
         ],
       ),
@@ -97,6 +98,139 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.only(right: 16.0, left: 16.0, top: 32.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Hi, User👋',
+              style: AppStyles.text20PxSemiBold.copyWith(
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Container(
+              height: 100,
+              width: context.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: ColorTheme.primary,
+                boxShadow: [
+                  BoxShadow(
+                    color: ColorTheme.secondary.withOpacity(0.25),
+                    blurRadius: 10,
+                    offset: Offset(0, 12),
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Total Peminjaman',
+                        style: AppStyles.text12PxMedium.copyWith(
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Rp 2.324.000',
+                        style: AppStyles.text20PxSemiBold.copyWith(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SvgPicture.asset(AppAssets.tax)
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 32,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                MainMenu(
+                  image: AppAssets.icon_pengajuan,
+                  label: 'Pengajuan\npeminjaman',
+                ),
+                MainMenu(
+                  image: AppAssets.icon_bayar,
+                  label: 'Bayar',
+                ),
+                MainMenu(
+                  image: AppAssets.icon_topup,
+                  label: 'Top Up\ne-Wallet',
+                ),
+                MainMenu(
+                  image: AppAssets.icon_lainnya,
+                  label: 'Lainnya',
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 32,
+            ),
+            Text(
+              'Rekomendasi',
+              style: AppStyles.text16PxSemiBold.copyWith(
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MainMenu extends StatelessWidget {
+  final String image;
+  final String label;
+  const MainMenu({
+    super.key,
+    required this.image,
+    required this.label,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Column(
+        children: [
+          Container(
+            width: 68,
+            height: 84,
+            padding: EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: ColorTheme.primary,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: SvgPicture.asset(image),
+          ),
+          SizedBox(
+            height: 8,
+          ),
+          Container(
+            alignment: Alignment.center,
+            height: 32,
+            child: Text(
+              label,
+              textAlign: TextAlign.center,
+              style: AppStyles.text12Px.copyWith(color: Colors.white),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
